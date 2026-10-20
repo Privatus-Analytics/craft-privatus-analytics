@@ -1,0 +1,131 @@
+{% import '_includes/forms' as forms %}
+
+{{ forms.autosuggestField({
+    label: 'Site ID'|t('privatus-analytics'),
+    instructions: 'Your public site id, for example pa_AbC123. Find it in your Privatus Analytics dashboard under Site settings, then Setup. Leave it empty to turn tracking off. You can use an environment variable.'|t('privatus-analytics'),
+    id: 'siteId',
+    name: 'siteId',
+    suggestEnvVars: true,
+    value: settings.siteId,
+    placeholder: 'pa_...',
+    errors: settings.getErrors('siteId'),
+    required: true,
+}) }}
+
+{{ forms.autosuggestField({
+    label: 'Script host'|t('privatus-analytics'),
+    instructions: 'The address that serves the tracking script. Keep the default unless you host your own copy.'|t('privatus-analytics'),
+    id: 'scriptHost',
+    name: 'scriptHost',
+    suggestEnvVars: true,
+    value: settings.scriptHost,
+    errors: settings.getErrors('scriptHost'),
+}) }}
+
+<hr>
+
+<h2>{{ 'Exclusions'|t('privatus-analytics') }}</h2>
+
+{{ forms.lightswitchField({
+    label: 'Do not track users who can access the control panel'|t('privatus-analytics'),
+    instructions: 'Keeps your own visits out of your reports.'|t('privatus-analytics'),
+    id: 'excludeCpUsers',
+    name: 'excludeCpUsers',
+    on: settings.excludeCpUsers,
+}) }}
+
+{% if userGroups|length %}
+    {{ forms.checkboxGroupField({
+        label: 'Do not track users in these groups'|t('privatus-analytics'),
+        name: 'excludedUserGroups',
+        options: userGroups|map(group => {label: group.name, value: group.handle}),
+        values: settings.excludedUserGroups,
+    }) }}
+{% endif %}
+
+{{ forms.textField({
+    label: 'Excluded paths'|t('privatus-analytics'),
+    instructions: 'Comma-separated paths that are never tracked. A star matches any characters. Example: /account/*,/private/*'|t('privatus-analytics'),
+    id: 'excludedPaths',
+    name: 'excludedPaths',
+    value: settings.excludedPaths,
+}) }}
+
+<hr>
+
+<h2>{{ 'Script options'|t('privatus-analytics') }}</h2>
+
+{{ forms.selectField({
+    label: 'Single-page app mode'|t('privatus-analytics'),
+    instructions: 'How client-side navigations are detected.'|t('privatus-analytics'),
+    id: 'spa',
+    name: 'spa',
+    options: [
+        {label: 'auto', value: 'auto'},
+        {label: 'history', value: 'history'},
+        {label: 'hash', value: 'hash'},
+        {label: 'off', value: 'off'},
+    ],
+    value: settings.spa,
+}) }}
+
+{{ forms.lightswitchField({
+    label: 'Manual pageviews'|t('privatus-analytics'),
+    instructions: 'Turn off the automatic pageview. You then call privatus.pageview() yourself.'|t('privatus-analytics'),
+    id: 'manual',
+    name: 'manual',
+    on: settings.manual,
+}) }}
+
+{{ forms.checkboxGroupField({
+    label: 'Modules'|t('privatus-analytics'),
+    name: 'modules',
+    options: [
+        {label: 'Engagement: time on page and scroll depth'|t('privatus-analytics'), value: 'engage'},
+        {label: 'Automatic events: outbound links, downloads and forms'|t('privatus-analytics'), value: 'auto'},
+        {label: 'Core Web Vitals'|t('privatus-analytics'), value: 'vitals'},
+        {label: 'Click maps'|t('privatus-analytics'), value: 'clicks'},
+        {label: 'On-site surveys'|t('privatus-analytics'), value: 'ask'},
+    ],
+    values: settings.modules,
+}) }}
+
+{{ forms.textField({
+    label: 'Allowed domains'|t('privatus-analytics'),
+    instructions: 'Comma-separated hostnames. Visits on other hostnames, such as a staging site, are ignored. Example: example.com,www.example.com'|t('privatus-analytics'),
+    id: 'domains',
+    name: 'domains',
+    value: settings.domains,
+}) }}
+
+{{ forms.textField({
+    label: 'Path masks'|t('privatus-analytics'),
+    instructions: 'Comma-separated rules in the form pattern->replacement. Example: /account/*->/account/:id'|t('privatus-analytics'),
+    id: 'pathMasks',
+    name: 'pathMasks',
+    value: settings.pathMasks,
+}) }}
+
+{{ forms.textField({
+    label: 'Extra query parameters'|t('privatus-analytics'),
+    instructions: 'Comma-separated query parameters to keep. UTM parameters are always kept. Example: page,lang'|t('privatus-analytics'),
+    id: 'extraParams',
+    name: 'extraParams',
+    value: settings.extraParams,
+}) }}
+
+{{ forms.lightswitchField({
+    label: 'Use canonical URL'|t('privatus-analytics'),
+    instructions: 'Record the rel=canonical URL instead of the address bar.'|t('privatus-analytics'),
+    id: 'canonical',
+    name: 'canonical',
+    on: settings.canonical,
+}) }}
+
+{{ forms.lightswitchField({
+    label: 'Hash routing'|t('privatus-analytics'),
+    instructions: 'Treat #fragments as separate pages.'|t('privatus-analytics'),
+    id: 'hash',
+    name: 'hash',
+    on: settings.hash,
+}) }}

@@ -1,0 +1,56 @@
+{
+  "name": "privatus/craft-privatus-analytics",
+  "description": "Adds the cookieless Privatus Analytics tracking script to your Craft CMS front end.",
+  "type": "craft-plugin",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "craft-plugin",
+    "analytics",
+    "privacy",
+    "cookieless",
+    "gdpr"
+  ],
+  "homepage": "https://privatusanalytics.com/docs/install/craft",
+  "support": {
+    "docs": "https://privatusanalytics.com/docs/install/craft",
+    "issues": "https://github.com/privatus-analytics/craft-privatus-analytics/issues",
+    "source": "https://github.com/privatus-analytics/craft-privatus-analytics"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Privatus Analytics",
+      "homepage": "https://privatusanalytics.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "craftcms/cms": "^5.0.0"
+  },
+  "require-dev": {
+    "craftcms/ecs": "dev-main",
+    "craftcms/phpstan": "dev-main",
+    "phpstan/phpstan": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "privatus\\privatusanalytics\\": "src/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true,
+      "craftcms/plugin-installer": true
+    }
+  },
+  "extra": {
+    "handle": "privatus-analytics",
+    "name": "Privatus Analytics",
+    "developer": "Privatus Analytics",
+    "documentationUrl": "https://privatusanalytics.com/docs/install/craft",
+    "changelogUrl": "https://raw.githubusercontent.com/privatus-analytics/craft-privatus-analytics/main/CHANGELOG.md",
+    "class": "privatus\\privatusanalytics\\Plugin"
+  }
+}
