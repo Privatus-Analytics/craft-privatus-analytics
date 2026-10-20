@@ -70,8 +70,8 @@ return [
 
 After you save a site id, every front-end page loads `https://privatusstats.com/js/pa.js` in the visitor's browser. The script sends the page address (query parameters are removed except campaign parameters and any you allow), the referrer, the browser language, the screen width, the time zone name and event names to `https://privatusstats.com/api/event`. The visitor's IP address is read in memory to derive an approximate country and to count unique visits, and it is not stored.
 
-* Terms of service: https://privatusanalytics.com/terms
-* Privacy policy: https://privatusanalytics.com/privacy
+* Terms of service: https://privatusanalytics.com/legal/terms
+* Privacy policy: https://privatusanalytics.com/legal/privacy
 
 ## License
 
