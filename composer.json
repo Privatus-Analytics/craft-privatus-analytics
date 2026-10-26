@@ -12,9 +12,9 @@
     "cookieless",
     "gdpr"
   ],
-  "homepage": "https://privatusanalytics.com/docs/install/craft",
+  "homepage": "https://privatusanalytics.com/docs/install/craft-cms",
   "support": {
-    "docs": "https://privatusanalytics.com/docs/install/craft",
+    "docs": "https://privatusanalytics.com/docs/install/craft-cms",
     "issues": "https://github.com/privatus-analytics/craft-privatus-analytics/issues",
     "source": "https://github.com/privatus-analytics/craft-privatus-analytics"
   },
@@ -49,7 +49,7 @@
     "handle": "privatus-analytics",
     "name": "Privatus Analytics",
     "developer": "Privatus Analytics",
-    "documentationUrl": "https://privatusanalytics.com/docs/install/craft",
+    "documentationUrl": "https://privatusanalytics.com/docs/install/craft-cms",
     "changelogUrl": "https://raw.githubusercontent.com/privatus-analytics/craft-privatus-analytics/main/CHANGELOG.md",
     "class": "privatus\\privatusanalytics\\Plugin"
   }
